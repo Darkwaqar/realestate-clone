@@ -11,9 +11,11 @@ import COLORS from "../constants/colors";
 const { width } = Dimensions.get("screen");
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { RootNavigationProps, house } from "../types";
+import Animated from "react-native-reanimated";
 
-const Card = ({ house }) => {
-  const navigation = useNavigation();
+const Card = ({ house }: { house: house }) => {
+  const navigation = useNavigation<RootNavigationProps<"HomeScreen">>();
   return (
     <Pressable
       activeOpacity={0.8}
@@ -21,7 +23,11 @@ const Card = ({ house }) => {
     >
       <View style={styles.card}>
         {/* House image */}
-        <Image source={{ uri: house.image }} style={styles.cardImage} />
+        <Animated.Image
+          sharedTransitionTag={`${house.id}-image`}
+          source={house.image}
+          style={styles.cardImage}
+        />
         <View style={{ marginTop: 10 }}>
           {/* Title and price container */}
           <View

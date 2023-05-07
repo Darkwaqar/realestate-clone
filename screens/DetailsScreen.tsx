@@ -14,6 +14,7 @@ import COLORS from "../constants/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { RootNavigationProps, RootRouteProps, house } from "../types";
+import Animated from "react-native-reanimated";
 const { width } = Dimensions.get("screen");
 const DetailsScreen = () => {
   const navigation = useNavigation<RootNavigationProps<"DetailsScreen">>();
@@ -21,18 +22,18 @@ const DetailsScreen = () => {
   const house = route.params;
 
   const InteriorCard = ({ interior }: { interior: string }) => {
-    return <Image source={{ uri: interior }} style={styles.interiorImage} />;
+    return <Image source={interior} style={styles.interiorImage} />;
   };
 
   return (
-    <View
-      style={{ flex: 1, backgroundColor: COLORS.white, position: "relative" }}
-    >
+    <View style={{ flex: 1, backgroundColor: COLORS.white }}>
+      {/* House image */}
       <View style={styles.header}>
         <View style={styles.headerBtn}>
           <MaterialIcons
             name="arrow-back-ios"
             size={20}
+            style={{ paddingLeft: 10 }}
             onPress={navigation.goBack}
           />
         </View>
@@ -41,13 +42,12 @@ const DetailsScreen = () => {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* House image */}
-
         <View style={styles.backgroundImageContainer}>
-          <ImageBackground
+          <Animated.Image
+            sharedTransitionTag={`${house.id}-image`}
             style={styles.backgroundImage}
-            source={{ uri: house.image }}
-          ></ImageBackground>
+            source={house.image}
+          />
 
           {/* Virtual Tag View */}
           <View style={styles.virtualTag}>

@@ -1,7 +1,7 @@
 export interface house {
   title: string;
-  id: number;
-  image: string;
+  id: string;
+  image: ImageSourcePropType;
   location: string;
   details: string;
   interiors: string;
@@ -9,10 +9,12 @@ export interface house {
 
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { Image, ImageSourcePropType } from "react-native/types";
 
 export type RootStackParamList = {
   OnBoardScreen: undefined;
   HomeScreen: undefined;
+  ListScreen: undefined;
   DetailsScreen: house;
 };
 

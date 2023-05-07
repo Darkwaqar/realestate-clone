@@ -8,18 +8,20 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import COLORS from "../constants/colors";
 import Card from "../components/Card";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import houses from "../constants/houses";
 import ListOptions from "../components/ListOptions";
 import ListCategories from "../components/ListCategories";
+import { useNavigation } from "@react-navigation/native";
 const { width } = Dimensions.get("screen");
 const HomeScreen = () => {
-  console.log(houses);
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
       {/* Customize status bar */}
@@ -57,9 +59,9 @@ const HomeScreen = () => {
             <TextInput placeholder="Search address, city, location" />
           </View>
 
-          <View style={styles.sortBtn}>
+          <TouchableOpacity style={styles.sortBtn}>
             <MaterialIcons name="tune" size={25} color={COLORS.white} />
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* Render list options */}

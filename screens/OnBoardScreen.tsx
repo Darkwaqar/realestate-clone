@@ -73,6 +73,7 @@ export default OnBoardScreen;
 const styles = StyleSheet.create({
   image: {
     height: 520,
+    maxHeight: "50%",
     width: "100%",
     borderBottomLeftRadius: 100,
   },

@@ -1,27 +1,39 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import COLORS from "../constants/colors";
+import { useNavigation } from "@react-navigation/native";
+import { RootNavigationProps } from "../types";
 const { width } = Dimensions.get("screen");
 
 const ListOptions = () => {
+  const navigation = useNavigation<RootNavigationProps<"HomeScreen">>();
   const optionsList = [
-    { title: "Buy a Home", img: "https://picsum.photos/200" },
-    { title: "Rent a Home", img: "https://picsum.photos/200" },
+    { title: "Buy a Home", img: require("../assets/buy.jpg") },
+    { title: "Rent a Home", img: require("../assets/rent.jpg") },
   ];
   return (
-    <View style={styles.optionListsContainer}>
-      {optionsList.map((option, index) => (
-        <View style={styles.optionsCard} key={index}>
-          {/* House image */}
-          <Image source={{ uri: option.img }} style={styles.optionsCardImage} />
+    <Pressable onPress={() => navigation.navigate("ListScreen")}>
+      <View style={styles.optionListsContainer}>
+        {optionsList.map((option, index) => (
+          <View style={styles.optionsCard} key={index}>
+            {/* House image */}
+            <Image source={option.img} style={styles.optionsCardImage} />
 
-          {/* Option title */}
-          <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>
-            {option.title}
-          </Text>
-        </View>
-      ))}
-    </View>
+            {/* Option title */}
+            <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>
+              {option.title}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </Pressable>
   );
 };
 
@@ -31,6 +43,7 @@ const styles = StyleSheet.create({
   optionsCard: {
     height: 210,
     width: width / 2 - 30,
+    // maxWidth: "400",
     elevation: 15,
     alignItems: "center",
     backgroundColor: COLORS.white,

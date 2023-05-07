@@ -15,3 +15,7 @@
 | Landing                      | Home                         | Detail Page                  |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | ![alt text](./preview/1.png) | ![alt text](./preview/2.png) | ![alt text](./preview/3.png) |
+
+| Home to list                 | Home to detail               | Home to list to detail       |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| ![alt text](./preview/1.gif) | ![alt text](./preview/2.gif) | ![alt text](./preview/3.gif) |
